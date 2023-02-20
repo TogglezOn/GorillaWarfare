@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstRun: 0
   m_ShowHubOnStart: 0
-  m_CurrentLayerSettingsVersion: 0
-  m_CurrentPhysicsSettingsVersion: 0
-  m_CurrentInputSettingsVersion: 0
-  m_CurrentPlayerSettingsVersion: 0
-  m_CurrentBuildSettingsVersion: 0
+  m_CurrentLayerSettingsVersion: 2
+  m_CurrentPhysicsSettingsVersion: 6
+  m_CurrentInputSettingsVersion: 2
+  m_CurrentPlayerSettingsVersion: 1
+  m_CurrentBuildSettingsVersion: 7
   m_CurrentNeoFPSVersion: 0
-  m_RenderPipeline: 0
+  m_RenderPipeline: 1
