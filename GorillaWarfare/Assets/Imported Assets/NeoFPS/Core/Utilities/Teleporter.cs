@@ -67,9 +67,18 @@ namespace NeoFPS
 				return;
 			if (m_Subject.gameObject == other.gameObject)
 			{
+				// Clear subject
 				m_Subject = null;
+
+				// Stop teleport coroutine
 				if (m_DelayedTeleportCoroutine != null)
-					StopCoroutine (m_DelayedTeleportCoroutine);
+				{
+					StopCoroutine(m_DelayedTeleportCoroutine);
+					m_DelayedTeleportCoroutine = null;
+				}
+
+				// Make the teleporter interactive again
+				m_Interactable.interactable = true;
 			}
 		}
 
@@ -81,6 +90,11 @@ namespace NeoFPS
 				StopCoroutine (m_DelayedTeleportCoroutine);
 			if (m_Subject != null)
 				m_DelayedTeleportCoroutine = StartCoroutine (DelayedTeleport ());
+            else
+			{
+				m_DelayedTeleportCoroutine = null;
+				m_Interactable.interactable = true;
+			}
 		}
 
 		IEnumerator DelayedTeleport ()

@@ -670,6 +670,18 @@ namespace NeoFPSEditor
             }
             else
             {
+                var used = new List<FpsInputButton>();
+                for (int i = 0; i < prop.arraySize; ++i)
+                    used.Add(prop.GetArrayElementAtIndex(i).FindPropertyRelative("m_Value").intValue);
+
+                // Check against used
+                for (int i = 0; i < FpsInputButton.count; ++i)
+                {
+                    if (!used.Contains(i))
+                        result.Add(i);
+                }
+
+                /*
                 // Get used
                 var used = new List<KeyBindingContext>();
                 for (int i = 0; i < prop.arraySize; ++i)
@@ -685,7 +697,7 @@ namespace NeoFPSEditor
                     if (canOverlap)
                         result.Add(i);
                 }
-
+                */
                 return result;
             }
         }

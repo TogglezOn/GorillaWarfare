@@ -95,8 +95,7 @@ namespace NeoFPS.ModularFirearms
             m_Layers = layers;
 
             localTransform.position = position;
-            if (m_FollowCurve)
-                localTransform.LookAt(position + velocity);
+            localTransform.LookAt(position + velocity);
 
             // Reset distance
             m_Distance = 0;
@@ -135,7 +134,9 @@ namespace NeoFPS.ModularFirearms
 
             Vector3 desiredPosition = m_LerpFromPosition + (m_Velocity * time);
             float distance = Vector3.Distance(m_LerpFromPosition, desiredPosition);
-            localTransform.LookAt(desiredPosition);
+
+            if (m_FollowCurve)
+                localTransform.LookAt(desiredPosition);
 
             // Enable renderer if travelled far enough (check based on from position due to lerp)
             if (!m_PassedMinimum && m_Distance > m_MinDistance)

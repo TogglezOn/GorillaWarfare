@@ -414,11 +414,11 @@ MonoBehaviour:
     m_Keys: 
     m_Values: []
     m_GameObject: {fileID: 1537083546726561563}
-  m_PrefabStrongID: 0
+  m_PrefabStrongID: 897100526
   expandChildObjects: 0
   expandNeoComponents: 0
   expandOtherComponents: 0
-  prefabGuid: 
+  prefabGuid: cf4dd72e1ab73944e87b5bfee31b9f15
 --- !u!114 &1537083546726561560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +514,7 @@ MonoBehaviour:
   m_StartingMagazine: 60
   m_ReloadDelayType: 1
   m_ReloadDuration: 3.33
+  m_BlockingDuration: 3.33
   m_ReloadAnimTrigger: Reload
   m_ReloadAudio: {fileID: 8300000, guid: 6d2abda95a30ec24b9fdfddf38f7d1ae, type: 3}
   m_Volume: 1

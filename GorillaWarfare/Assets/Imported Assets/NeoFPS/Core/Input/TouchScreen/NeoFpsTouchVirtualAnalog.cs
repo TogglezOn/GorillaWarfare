@@ -17,6 +17,13 @@ namespace NeoFPS
         [SerializeField, Tooltip("A falloff curve for the input strength. The horizontal axis is the normalised distance of the touch from the center of the control. The vertical axis is the output strength.")]
         private AnimationCurve m_InputCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
+        [Header("Visualisation")]
+
+        [SerializeField, Tooltip("A visual marker for the analog position that appears while touch is held.")]
+        private RectTransform m_TouchMarkerTransform = null;
+        [SerializeField, Tooltip("The distance the marker should move from the center of the analog control when at full strength.")]
+        private float m_MaxMarkerDistance = 120f;
+
         [Header("Events")]
 
         [SerializeField, Tooltip("An event fired when the player first touches this control.")]
@@ -28,6 +35,14 @@ namespace NeoFPS
         {
             m_InputCurve.preWrapMode = WrapMode.Clamp;
             m_InputCurve.postWrapMode = WrapMode.Clamp;
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if (m_TouchMarkerTransform != null)
+                m_TouchMarkerTransform.gameObject.SetActive(false);
         }
 
         public override bool HandleTouch(Touch touch)
@@ -49,17 +64,28 @@ namespace NeoFPS
                 controller.axes[m_VerticalAxis] += normalised.y;
             }
 
+            if (m_TouchMarkerTransform != null)
+            {
+                m_TouchMarkerTransform.anchoredPosition = normalised * m_MaxMarkerDistance;
+            }
+
             return consume;
         }
 
         protected override void OnTouchStarted()
         {
             m_OnTouchStarted.Invoke();
+
+            if (m_TouchMarkerTransform != null)
+                m_TouchMarkerTransform.gameObject.SetActive(true);
         }
 
         protected override void OnTouchEnded()
         {
             m_OnTouchEnded.Invoke();
+
+            if (m_TouchMarkerTransform != null)
+                m_TouchMarkerTransform.gameObject.SetActive(false);
         }
     }
 }

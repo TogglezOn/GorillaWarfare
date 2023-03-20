@@ -425,7 +425,7 @@ namespace NeoFPS
 
         public bool isBlocked
         {
-            get { return m_Blockers.Count > 0; }
+            get { return m_Blockers.Count > 0 || m_BlockingCoroutine != null; }
         }
 
         public void AddBlocker(Object o)

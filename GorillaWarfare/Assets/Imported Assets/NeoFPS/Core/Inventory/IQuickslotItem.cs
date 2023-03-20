@@ -15,12 +15,14 @@ namespace NeoFPS
 		bool isSelected { get; }
 		bool isSelectable { get; }
 		bool isDroppable { get; }
+        bool isUsable { get; }
 
         void OnSelect ();
         Waitable OnDeselect ();
         void OnDeselectInstant ();
         bool DropItem(Vector3 position, Vector3 forward, Vector3 velocity);
-        
+        void UseItem();
+
         // Add monobehaviour methods to remove need for casting if required
         GameObject gameObject { get; }
         Transform transform { get; }

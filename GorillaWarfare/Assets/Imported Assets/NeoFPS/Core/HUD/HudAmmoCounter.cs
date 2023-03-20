@@ -15,7 +15,7 @@ namespace NeoFPS
 		[SerializeField, Tooltip("The stack count text entry for displaying count and total.")]
 		private Text m_StackCountText = null;
 
-		[Header ("Firearms")]
+		[Header("Firearms")]
 
 		[SerializeField, Tooltip("The group used for firearms.")]
 		private GameObject m_FirearmGroup = null;
@@ -29,6 +29,14 @@ namespace NeoFPS
 		[SerializeField, Tooltip("The text entry for displaying the ammo type.")]
 		private Text m_AmmoTypeText = null;
 
+		[Header("Conditions")]
+
+		[SerializeField, FpsInventoryKey, Tooltip("A set of IDs this ammo counter should be visible for. If non are specified, then the counter will be visible for all valid.")]
+		private int[] m_OnlyIncludeItems = { };
+
+		[SerializeField, FpsInventoryKey, Tooltip("A set of IDs the ammo counter should be hidden for.")]
+		private int[] m_ExcludeItems = { };
+
 		private int m_MagazineCount = -1;
 		private int m_TotalCount = -1;
 		private FpsInventoryBase m_InventoryBase = null;
@@ -36,6 +44,41 @@ namespace NeoFPS
         private IModularFirearm m_Firearm = null;
         private IReloader m_Reloader = null;
         private IAmmo m_Ammo = null;
+
+		bool IsIdValid(int id)
+		{
+			bool result = false;
+
+			// Check included (if non specified, then all are valid)
+			if (m_OnlyIncludeItems.Length > 0)
+			{
+				for (int i = 0; i < m_OnlyIncludeItems.Length; ++i)
+                {
+					if (m_OnlyIncludeItems[i] == id)
+                    {
+						result = true;
+						break;
+                    }
+                }
+			}
+			else
+				result = true;
+
+			// Check excluded
+			if (m_ExcludeItems.Length > 0)
+			{
+				for (int i = 0; i < m_ExcludeItems.Length; ++i)
+				{
+					if (m_ExcludeItems[i] == id)
+					{
+						result = false;
+						break;
+					}
+				}
+			}
+
+			return result;
+		}
 
         protected override void OnDestroy()
         {
@@ -103,17 +146,11 @@ namespace NeoFPS
 				if (m_Wieldable != null)
 					m_Wieldable.onQuantityChange -= OnWieldableQuantityChange;
 			}
-
-			if (item == null)
-			{
-				m_FirearmGroup.SetActive (false);
-				return;
-			}
-            
+			            
 			m_Wieldable = item as IInventoryItem;
-			if (m_Wieldable == null)
+			if (m_Wieldable == null || !IsIdValid(m_Wieldable.itemIdentifier))
 			{
-				m_FirearmGroup.SetActive (false);
+				gameObject.SetActive(false);
 				return;
 			}
 
@@ -144,6 +181,8 @@ namespace NeoFPS
 
 				m_FirearmGroup.SetActive (true);
 			}
+
+			gameObject.SetActive(true);
 		}
 
         protected void OnReloaderChange (IModularFirearm firearm, IReloader reloader)
