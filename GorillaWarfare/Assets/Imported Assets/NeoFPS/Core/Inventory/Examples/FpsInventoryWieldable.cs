@@ -285,6 +285,11 @@ namespace NeoFPS
             get { return m_QuickSlot >= -1 && !m_DestroyOnDeselect; }
         }
 
+        public bool isUsable
+        {
+            get { return false; }
+        }
+
         public bool isDroppable
         {
             get { return m_DropObject != null; }
@@ -303,6 +308,8 @@ namespace NeoFPS
 
             return true;
         }
+
+        public void UseItem() { }
 
         #endregion
     }

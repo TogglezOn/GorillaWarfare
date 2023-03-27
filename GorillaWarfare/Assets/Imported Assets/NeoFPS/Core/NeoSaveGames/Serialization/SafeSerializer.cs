@@ -25,6 +25,11 @@ namespace NeoSaveGames.Serialization
             get { return m_State != SerializerState.Idle; }
         }
 
+        public bool isReadyToWrite
+        {
+            get { return m_State == SerializerState.WaitingForWrite; }
+        }
+
         public int byteLength
         {
             get { return (int)m_MemoryStream.Length; }

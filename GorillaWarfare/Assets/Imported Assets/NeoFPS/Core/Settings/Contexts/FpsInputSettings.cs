@@ -49,6 +49,9 @@ namespace NeoFPS
 
         public event UnityAction onMouseSettingsChanged;
 
+		const float k_MinSensitivity = 0.01f;
+		const float k_MaxSensitivity = 1f;
+
 		protected override bool CheckIfCurrent ()
 		{
 			return FpsSettings.input == this;
@@ -56,8 +59,8 @@ namespace NeoFPS
 
         protected void OnValidate()
 		{
-			m_MouseSensitivityH = Mathf.Clamp(m_MouseSensitivityH, 0.1f, 5f);
-			m_MouseSensitivityV = Mathf.Clamp(m_MouseSensitivityV, 0.1f, 5f);
+			m_MouseSensitivityH = Mathf.Clamp(m_MouseSensitivityH, k_MinSensitivity, k_MaxSensitivity);
+			m_MouseSensitivityV = Mathf.Clamp(m_MouseSensitivityV, k_MinSensitivity, k_MaxSensitivity);
 			m_MouseAcceleration = Mathf.Clamp01(m_MouseAcceleration);
 			m_MouseSmoothing = Mathf.Clamp01(m_MouseSmoothing);
 		}
@@ -69,7 +72,7 @@ namespace NeoFPS
 			get { return m_MouseSensitivityH; }
 			set
 			{
-				SetValue (ref m_MouseSensitivityH, Mathf.Clamp(value, 0.1f, 5f));
+				SetValue (ref m_MouseSensitivityH, Mathf.Clamp(value, k_MinSensitivity, k_MaxSensitivity));
 				if (onMouseSettingsChanged != null)
 					onMouseSettingsChanged ();
 			}
@@ -80,7 +83,7 @@ namespace NeoFPS
 			get { return m_MouseSensitivityV; }
 			set
 			{
-				SetValue (ref m_MouseSensitivityV, Mathf.Clamp(value, 0.1f, 5f));
+				SetValue (ref m_MouseSensitivityV, Mathf.Clamp(value, k_MinSensitivity, k_MaxSensitivity));
 				if (onMouseSettingsChanged != null)
 					onMouseSettingsChanged ();
 			}
@@ -148,7 +151,7 @@ namespace NeoFPS
 			get { return GetFloat ("is.horizontalSensitivity", m_MouseSensitivityH); }
 			set
 			{
-				SetFloat ("is.horizontalSensitivity", value);
+				SetFloat ("is.horizontalSensitivity", Mathf.Clamp(value, k_MinSensitivity, k_MaxSensitivity));
 				if (onMouseSettingsChanged != null)
 					onMouseSettingsChanged ();
 			}
@@ -159,7 +162,7 @@ namespace NeoFPS
 			get { return GetFloat ("is.verticalSensitivity", m_MouseSensitivityV); }
 			set 
 			{
-				SetFloat ("is.verticalSensitivity", value);
+				SetFloat ("is.verticalSensitivity", Mathf.Clamp(value, k_MinSensitivity, k_MaxSensitivity));
 				if (onMouseSettingsChanged != null)
 					onMouseSettingsChanged ();
 			}

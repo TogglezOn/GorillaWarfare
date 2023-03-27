@@ -1660,6 +1660,7 @@ GameObject:
   - component: {fileID: 570955332}
   - component: {fileID: 570955331}
   - component: {fileID: 570955333}
+  - component: {fileID: 570955334}
   m_Layer: 21
   m_Name: CheckpointTrigger
   m_TagString: Untagged
@@ -1681,6 +1682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_OneShot: 0
   m_AutoSave: 0
+  m_CustomSaveName: 
   m_SpawnPoints:
   - {fileID: 931832373}
   m_DisableOldSpawns: 1
@@ -1711,6 +1713,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20, y: 14, z: 17.2}
   m_Center: {x: 0, y: 6, z: 0}
+--- !u!114 &570955334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570955330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421f12c4cc2c4614f9e0616ef942cf44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SaveName: 0
+  m_Position: 2
+  m_Rotation: 2
+  m_LocalScale: 0
+  m_FilterChildObjects: 0
+  m_ChildObjects: []
+  m_FilterNeoComponents: 0
+  m_NeoComponents: []
+  m_OtherComponents: []
+  m_Overrides: []
+  m_Children:
+    m_Keys: 
+    m_Values: []
+    m_GameObject: {fileID: 570955334}
+  m_PrefabStrongID: 0
+  expandChildObjects: 0
+  expandNeoComponents: 0
+  expandOtherComponents: 0
+  prefabGuid: 
 --- !u!1 &574070129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,8 +1944,9 @@ MonoBehaviour:
   - {fileID: 389179482287414612, guid: be93e4b3618075e4eb852c2884dbdc7d, type: 3}
   m_Assets: []
   m_SceneObjects:
-    m_Keys: 
-    m_Values: []
+    m_Keys: 1033e9c3
+    m_Values:
+    - {fileID: 570955334}
     m_Scene: {fileID: 591604804}
   m_DisplayName: Room 01 - Random Chance
 --- !u!1 &633492930

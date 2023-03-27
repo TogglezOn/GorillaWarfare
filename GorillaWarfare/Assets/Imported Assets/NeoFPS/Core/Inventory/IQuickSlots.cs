@@ -21,6 +21,7 @@ namespace NeoFPS
 		bool SelectNextSlot ();
 		bool SelectPreviousSlot ();
 
+		bool isLocked { get; }
         bool LockSelectionToSlot(int index, Object o);
         bool LockSelectionToBackupItem(Object o, bool silent);
         bool LockSelectionToNothing(Object o, bool silent);
@@ -33,7 +34,7 @@ namespace NeoFPS
         bool isBackupItemSelected { get; }
 
         void AutoSwitchSlot (int slot);
-		void SwitchSelection ();
+		bool SwitchSelection ();
 		void DropSelected ();
 		void DropAllWieldables();
 	}

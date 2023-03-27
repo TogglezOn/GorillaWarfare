@@ -75,6 +75,11 @@ namespace NeoFPS
 			Custom
         }
 
+        public override bool isBlocked
+        {
+            get { return base.isBlocked || attacking; }
+        }
+
 #if UNITY_EDITOR
         protected override void OnValidate ()
 		{
@@ -225,7 +230,8 @@ namespace NeoFPS
             }
 
             // Trigger hit animation
-            animationHandler.SetTrigger(m_AnimHashAttackHit);
+            if (m_AnimHashAttackHit != 0)
+                animationHandler.SetTrigger(m_AnimHashAttackHit);
 
             // Process hit extensions
             for (int i = 0; i < m_HitExtensions.Length; ++i)
@@ -237,7 +243,8 @@ namespace NeoFPS
             base.OnBlockStateChange(to);
 
             // Set animator parameter
-            animationHandler.SetBool(m_AnimHashBlock, to);
+            if (m_AnimHashBlock != 0)
+                animationHandler.SetBool(m_AnimHashBlock, to);
 
             // Play audio
             if (to)

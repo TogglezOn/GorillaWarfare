@@ -405,13 +405,7 @@ namespace NeoFPS
                 RemoveItemReference(result);
 
                 // Switch selection if required
-                if (m_SlotCount > 1)
-                    SwitchSelection();
-                else
-                {
-                    if (!SelectStartingSlot())
-                        SetSelected(null, -2, true, false);
-                }
+                SwitchSelectionOnRemove(item);
             }
             else
             {
@@ -423,6 +417,23 @@ namespace NeoFPS
                 RemoveItemReference(result);
             }
 		}
+
+        protected virtual void SwitchSelectionOnRemove(IInventoryItem removed)
+        {
+            if (m_SlotCount > 1)
+            {
+                if (!SwitchSelection() && backupSlot != null)
+                    SetSelected(backupSlot, -1, false, false);
+
+                if (selected == removed)
+                    SetSelected(null, -2, true, false);
+            }
+            else
+            {
+                if (!SelectStartingSlot())
+                    SetSelected(null, -2, true, false);
+            }
+        }
 		
 		public void RemoveItem(int itemIdentifier, UnityAction<IInventoryItem> onClearAction)
         {
@@ -454,10 +465,16 @@ namespace NeoFPS
 			// Remove
 			RemoveItemReference(result);
 
-			// Switch selection if required
-			if (wasSelected)
-				SwitchSelection ();
-		}
+            // Switch selection if required
+            if (wasSelected)
+            {
+                if (!SwitchSelection() && backupSlot != null)
+                    SetSelected(backupSlot, -1, false, false);
+
+                if (selected == qsi)
+                    SetSelected(null, -2, true, false);
+            }
+        }
 
         public void GetItems(List<IInventoryItem> output)
         {
@@ -504,7 +521,7 @@ namespace NeoFPS
         [SerializeField, Tooltip("If selecting an empty slot, switch to the backup item.")]
         private bool m_EmptyAsBackup = false;
 
-        [SerializeField, Range (1, 10), Tooltip("The number of item quick slots.")]
+        [SerializeField, Min(1), Tooltip("The number of item quick slots.")]
 		private int m_SlotCount = 10;
 
         [SerializeField, Tooltip("The selection method for the starting slot.")]
@@ -579,6 +596,7 @@ namespace NeoFPS
 		public abstract void ClearSlots();
 		public abstract bool IsSlotSelectable(int index);
 		protected abstract bool SelectSlotInternal(int slot);
+        protected abstract bool CheckInstantUse(int slot);
 
         protected void SetSelected(IQuickSlotItem item, int slot, bool instant, bool silent)
         {
@@ -666,32 +684,39 @@ namespace NeoFPS
         {
             CheckInitialised();
 
-            if (m_LockObject != null)
+            if (CheckInstantUse(slot))
+            {
                 return false;
-
-            if (slot == -1 || m_LockObject)
-            {
-                if (m_HolsterAction == HolsterAction.BackupItem)
-                    return SelectBackupItem(true, false);
-                else
-                    return SelectNothing(true, false);
-            }
-
-            if (!SelectSlotInternal(slot))
-            {
-                if (m_EmptyAsBackup)
-                {
-                    if (selected != null && selected != backupSlot)
-                        m_Holstered = selected.quickSlot;
-                    SetSelected(backupSlot, slot, false, false);
-
-                    return true;
-                }
-                else
-                    return false;
             }
             else
-                return true;
+            {
+                if (m_LockObject != null)
+                    return false;
+
+                if (slot == -1 || m_LockObject)
+                {
+                    if (m_HolsterAction == HolsterAction.BackupItem)
+                        return SelectBackupItem(true, false);
+                    else
+                        return SelectNothing(true, false);
+                }
+
+                if (!SelectSlotInternal(slot))
+                {
+                    if (m_EmptyAsBackup)
+                    {
+                        if (selected != null && selected != backupSlot)
+                            m_Holstered = selected.quickSlot;
+                        SetSelected(backupSlot, slot, false, false);
+
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                else
+                    return true;
+            }
 		}
 
         public virtual bool SelectNothing(bool toggle, bool silent)
@@ -823,13 +848,13 @@ namespace NeoFPS
                             return true;
                     }
 
-                    // No valid slots found
-                    // Check for the backup item
-                    if (backupSlot != null)
-                    {
-                        SetSelected(backupSlot, -1, false, false);
-                        return true;
-                    }
+                    //// No valid slots found
+                    //// Check for the backup item
+                    //if (backupSlot != null)
+                    //{
+                    //    SetSelected(backupSlot, -1, false, false);
+                    //    return true;
+                    //}
                 }
 
 				return false;
@@ -861,13 +886,13 @@ namespace NeoFPS
                             return true;
                     }
 
-                    // No valid slots found
-                    // Check for the backup item
-                    if (backupSlot != null)
-                    {
-                        SetSelected(backupSlot, -1, false, false);
-                        return true;
-                    }
+                    //// No valid slots found
+                    //// Check for the backup item
+                    //if (backupSlot != null)
+                    //{
+                    //    SetSelected(backupSlot, -1, false, false);
+                    //    return true;
+                    //}
                 }
 
 				return false;
@@ -876,13 +901,17 @@ namespace NeoFPS
 				return SelectStartingSlot ();
 		}
 
-
 		public int numSlots
 		{
 			get { return m_SlotCount; }
 		}
 
-		public virtual void AutoSwitchSlot (int slot)
+        public bool isLocked
+        {
+            get { return m_LockObject != null; }
+        }
+
+        public virtual void AutoSwitchSlot (int slot)
         {
             if (m_LockObject != null)
                 return;
@@ -943,9 +972,9 @@ namespace NeoFPS
 			}
 		}
 
-		public virtual void SwitchSelection ()
+		public virtual bool SwitchSelection ()
 		{
-			SelectNextSlot ();
+			return SelectNextSlot (); 
 		}
 
 		public void DropSelected ()
@@ -971,7 +1000,7 @@ namespace NeoFPS
 
 		protected void DropItem (IQuickSlotItem qsi)
 		{
-			if (qsi != null && qsi.isDroppable)
+			if (qsi != null && qsi.isDroppable && qsi != backupSlot)
 			{
 				// Fire onDropped event
 				if (onItemDropped != null)

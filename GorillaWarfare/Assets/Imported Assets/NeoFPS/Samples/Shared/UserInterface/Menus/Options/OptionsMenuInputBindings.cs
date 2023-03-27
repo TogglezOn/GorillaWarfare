@@ -144,8 +144,8 @@ namespace NeoFPS.Samples
 			for (int i = ignoreButtonCount; i < FpsInputButton.count; ++i)
 			{
 				// Initialise the entry
-				FpsInputButton button = (FpsInputButton)i;
-				int index = i - ignoreButtonCount;
+				FpsInputButton button = i;
+				int index = GetShiftedButtonIndex(i);
 				m_Entries[index].Initialise(
 					button,
 					NeoFpsInputManager.GetButtonDisplayName(button),
@@ -168,9 +168,9 @@ namespace NeoFPS.Samples
         void OnRebindInput(FpsInputButton button, bool isPrimary, KeyCode newKey)
         {
             if (isPrimary)
-                m_Entries[button - ignoreButtonCount].primary = newKey;
+                m_Entries[GetShiftedButtonIndex(button)].primary = newKey;
             else
-                m_Entries[button - ignoreButtonCount].secondary = newKey;
+                m_Entries[GetShiftedButtonIndex(button)].secondary = newKey;
         }
 
 		void ResetRebindFlags()
@@ -178,6 +178,18 @@ namespace NeoFPS.Samples
 			m_RebindableButtons = new bool[FpsInputButton.count - ignoreButtonCount];
 			for (int i = 0; i < m_RebindableButtons.Length; ++i)
 				m_RebindableButtons[i] = true;
+        }
+
+		int GetShiftedButtonIndex(FpsInputButton button)
+        {
+			int target = button - ignoreButtonCount;
+
+			int skipped = 0;
+			for (int i = 0; i < target; ++i)
+				if (!m_RebindableButtons[i])
+					++skipped;
+
+			return target - skipped;
         }
 	}
 }

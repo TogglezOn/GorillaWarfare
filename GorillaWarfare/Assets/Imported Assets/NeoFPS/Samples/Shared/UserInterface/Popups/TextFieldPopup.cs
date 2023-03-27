@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace NeoFPS.Samples
 {
@@ -39,8 +40,15 @@ namespace NeoFPS.Samples
 		public void OnConfirmButton ()
 		{
             m_InputField.DeactivateInputField();
-            OnEndEdit(m_InputField.text);
-		}
+
+            if (m_AllowEmpty || !string.IsNullOrEmpty(m_InputField.text))
+            {
+                if (m_OnYes != null)
+                    m_OnYes.Invoke(m_InputField.text);
+                m_OnYes = null;
+                StartCoroutine(ClosePopup());
+            }
+        }
 
 		public void OnCancelButton ()
         {
@@ -51,13 +59,8 @@ namespace NeoFPS.Samples
 
         void OnEndEdit(string text)
         {
-            if (m_AllowEmpty || !string.IsNullOrEmpty(m_InputField.text))
-            {
-                if (m_OnYes != null)
-                    m_OnYes.Invoke(text);
-                m_OnYes = null;
-                StartCoroutine(ClosePopup());
-            }
+            if (!EventSystem.current.alreadySelecting)
+                EventSystem.current.SetSelectedGameObject(m_ConfirmButtonText.GetComponentInParent<Button>().gameObject);
         }
 
         IEnumerator ClosePopup()

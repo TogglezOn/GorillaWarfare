@@ -736,6 +736,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -747,6 +748,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1047,22 +1049,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5700bbc4819972642b2cbe8746a9bcee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AnimatorLocation: 1
   m_Animator: {fileID: 95936643884672626}
-  m_Damage: 25
-  m_ImpactForce: 8
-  m_Range: 2.25
-  m_Delay: 0.5
-  m_RecoverTime: 1
+  m_PoseTransform: {fileID: 4299552077295730}
   m_Crosshair:
     m_Value: 0
-  m_TriggerAttack: Attack
-  m_TriggerAttackHit: AttackHit
-  m_BoolBlock: Block
   m_TriggerDraw: Draw
   m_RaiseDuration: 0.5
   m_TriggerLower: 
   m_LowerDuration: 0
   m_AudioSelect: {fileID: 0}
+  m_Damage: 25
+  m_ImpactForce: 8
+  m_Layers:
+    serializedVersion: 2
+    m_Bits: 26416129
+  m_QueryTriggerColliders: 0
+  m_Range: 2.25
+  m_Delay: 0.5
+  m_RecoverTime: 1
+  m_TriggerAttack: Attack
+  m_TriggerAttackHit: AttackHit
+  m_BoolBlock: Block
   m_AudioAttack: {fileID: 0}
   m_AudioBlockRaise: {fileID: 0}
   m_AudioBlockLower: {fileID: 0}
@@ -1088,6 +1096,8 @@ MonoBehaviour:
   m_OnQuantityChange:
     m_PersistentCalls:
       m_Calls: []
+  m_ItemKey:
+    m_Value: 0
   m_InventoryID: 3
   m_DisplayImage: {fileID: 0}
   m_QuickSlot: -1
@@ -1261,11 +1271,11 @@ MonoBehaviour:
   m_OutTime: 0.25
   m_SprintOriginPos: {x: 0.05, y: -0.05, z: 0.05}
   m_SprintOriginRot: {x: 10, y: -30, z: 15}
-  m_SprintOffset: {x: 0.05, y: 0.025}
-  m_SprintRotation: {x: 2.5, y: 5, z: 5}
+  m_SprintOffset: {x: 0.025, y: 0.0075}
+  m_SprintRotation: {x: 1.5, y: 2.5, z: 2.5}
   m_RotationDesync: 0.1
   m_FullStrengthSpeed: 10
-  m_AttackTime: 0.5
+  m_MinAttackTime: 0.5
   m_MinBlockTime: 0.5
 --- !u!114 &114478405437575540
 MonoBehaviour:
@@ -1302,7 +1312,7 @@ MonoBehaviour:
     outPositionBlend: 2
     outRotationBlend: 3
     outTime: 0.35
-  m_AttackTime: 0.5
+  m_MinAttackTime: 0.5
   m_MinBlockTime: 0.5
 --- !u!1 &1445882386780630
 GameObject:

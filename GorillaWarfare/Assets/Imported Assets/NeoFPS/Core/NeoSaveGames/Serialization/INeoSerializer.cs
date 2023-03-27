@@ -12,6 +12,7 @@ namespace NeoSaveGames.Serialization
         bool WriteToStream(Stream stream);
 
         bool isSerializing { get; }
+        bool isReadyToWrite { get; }
         int byteLength { get; }
 
         void PushContext(SerializationContext context, int id);

@@ -1,4 +1,5 @@
 ﻿using NeoSaveGames;
+using NeoSaveGames.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,8 @@ using UnityEngine.SceneManagement;
 
 namespace NeoFPS
 {
-    public class CheckpointTrigger : CharacterTriggerZone
+    [RequireComponent(typeof(NeoSerializedGameObject))]
+    public class CheckpointTrigger : CharacterTriggerZone, INeoSerializableComponent
     {
         [SerializeField, Tooltip("Should the checkpoint trigger fire multiple times (eg allow back-tracking).")]
         private bool m_OneShot = false;
@@ -25,6 +27,7 @@ namespace NeoFPS
 
         private static CheckpointTrigger s_LastCheckpoint = null;
         private bool m_CheckpointActive = true;
+        private bool m_Initialised = false;
 
         protected void OnDestroy()
         {
@@ -32,11 +35,16 @@ namespace NeoFPS
                 s_LastCheckpoint = null;
         }
 
+        protected void Start()
+        {
+            m_Initialised = true;
+        }
+
         protected override void OnCharacterEntered(ICharacter c)
         {
             base.OnCharacterEntered(c);
 
-            if (m_CheckpointActive && s_LastCheckpoint != this)
+            if (m_Initialised && m_CheckpointActive && s_LastCheckpoint != this)
             {
                 // Record checkpoint (to prevent repeat firing)
                 s_LastCheckpoint = this;
@@ -58,14 +66,41 @@ namespace NeoFPS
                     }
                 }
 
-                // Save
-                if (m_AutoSave)
-                    SaveGameManager.AutoSave(m_CustomSaveName);
-
                 // Deactivate if one-shot
                 if (m_OneShot)
                     m_CheckpointActive = false;
+
+                // Save
+                if (m_AutoSave)
+                {
+                    SaveGameManager.AutoSave(m_CustomSaveName);
+                }
             }
+        }
+
+        private static readonly NeoSerializationKey k_LastCheckpointKey = new NeoSerializationKey("last");
+        private static readonly NeoSerializationKey k_CheckpointActiveKey = new NeoSerializationKey("active");
+
+        public void WriteProperties(INeoSerializer writer, NeoSerializedGameObject nsgo, SaveMode saveMode)
+        {
+            // Write active
+            writer.WriteValue(k_CheckpointActiveKey, m_CheckpointActive);
+
+            // Write if this was last checkpoint
+            if (s_LastCheckpoint == this)
+                writer.WriteValue(k_LastCheckpointKey, true);
+        }
+
+        public void ReadProperties(INeoDeserializer reader, NeoSerializedGameObject nsgo)
+        {
+            // Read active
+            reader.TryReadValue(k_CheckpointActiveKey, out m_CheckpointActive, m_CheckpointActive);
+
+            // Read if this was last checkpoint
+            if (reader.TryReadValue(k_LastCheckpointKey, out bool temp, false))
+                s_LastCheckpoint = this;
+
+            m_Initialised = true;
         }
     }
 }

@@ -172,6 +172,8 @@ namespace NeoFPS
         protected virtual void OnDisable()
         {
             blocking = false;
+            attacking = false;
+            m_SelectionTimer = 0f;
 
             // Reset pose
             m_PoseHandler.OnDisable();
@@ -334,9 +336,9 @@ namespace NeoFPS
 
         public event UnityAction<bool> onBlockedChanged;
 
-        public bool isBlocked
+        public virtual bool isBlocked
         {
-            get { return m_Blockers.Count > 0; }
+            get { return m_Blockers.Count > 0 || m_SelectionTimer > 0f; }
         }
 
         public void AddBlocker(Object o)

@@ -17,6 +17,7 @@ namespace NeoFPSEditor.ModularFirearms
             {
                 ++EditorGUI.indentLevel;
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("m_ReloadDuration"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("m_BlockingDuration"));
                 --EditorGUI.indentLevel;
             }
             EditorGUILayout.PropertyField(serializedObject.FindProperty("m_ReloadAnimTrigger"));
