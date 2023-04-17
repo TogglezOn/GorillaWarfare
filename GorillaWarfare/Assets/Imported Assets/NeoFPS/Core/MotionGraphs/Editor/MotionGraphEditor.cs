@@ -327,9 +327,9 @@ namespace NeoFPSEditor.CharacterMotion
             currentGraph.rootNode.CollectConditions(collectedConditions);
             currentGraph.rootNode.CollectBehaviours(collectedBehaviours);
 
-            Debug.Log(AssetDatabase.GetAssetPath(collectedConnections[0]));
-            Debug.Log(AssetDatabase.GetAssetPath(collectedConditions[0]));
-            Debug.Log(AssetDatabase.GetAssetPath(collectedBehaviours[0]));
+            //Debug.Log(AssetDatabase.GetAssetPath(collectedConnections[0]));
+            //Debug.Log(AssetDatabase.GetAssetPath(collectedConditions[0]));
+            //Debug.Log(AssetDatabase.GetAssetPath(collectedBehaviours[0]));
 
             // Gather references
             List<UnityEngine.Object> referenced = new List<UnityEngine.Object>(assets.Length);

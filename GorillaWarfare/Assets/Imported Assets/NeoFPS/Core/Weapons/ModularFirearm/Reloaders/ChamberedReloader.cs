@@ -1,6 +1,7 @@
 ﻿using NeoSaveGames;
 using NeoSaveGames.Serialization;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NeoFPS.ModularFirearms
 {
@@ -13,8 +14,14 @@ namespace NeoFPS.ModularFirearms
         [SerializeField, Tooltip("The time taken to reload.")]
         private float m_ReloadDuration = 2f;
 
+        [SerializeField, Delayed, FormerlySerializedAs("m_ReloadDuration"), Tooltip("The time taken before you can use the weapon again after the reload starts.")]
+        private float m_BlockingDuration = 0f;
+
         [SerializeField, Tooltip("The time taken to reload if reloading from empty.")]
         private float m_ReloadDurationEmpty = 3f;
+
+        [SerializeField, Delayed, FormerlySerializedAs("m_ReloadDurationEmpty"), Tooltip("The time taken before you can use the weapon again after the reload from empty starts.")]
+        private float m_BlockingDurationEmpty = 0f;
 
         [SerializeField, AnimatorParameterKey(AnimatorControllerParameterType.Trigger, true, true), Tooltip("The animator controller trigger key for the reload animation.")]
         private string m_ReloadAnimTrigger = "Reload";
@@ -31,10 +38,12 @@ namespace NeoFPS.ModularFirearms
         [SerializeField, Range(0f, 1f), Tooltip("The volume that reloading sounds are played at.")]
         private float m_Volume = 1f;
 
+        private bool m_Reloaded = true;
         private bool m_WaitingOnExternalTrigger = false;
         private int m_ReloadAnimTriggerHash = -1;
         private int m_EmptyAnimBoolHash = -1;
         private float m_ReloadTimeout = 0f;
+        private float m_BlockingTimeout = 0f;
 
         private bool m_Chambered = true;
         protected bool chambered
@@ -59,7 +68,7 @@ namespace NeoFPS.ModularFirearms
             public WaitForReload(ChamberedReloader owner) { m_Owner = owner; }
 
             // Check for timeout
-            protected override bool CheckComplete() { return !m_Owner.m_WaitingOnExternalTrigger && m_Owner.m_ReloadTimeout == 0f; }
+            protected override bool CheckComplete() { return !m_Owner.m_WaitingOnExternalTrigger && m_Owner.m_ReloadTimeout == 0f && m_Owner.m_BlockingTimeout == 0f; }
         }
 
         WaitForReload m_WaitForReload = null;
@@ -99,6 +108,7 @@ namespace NeoFPS.ModularFirearms
 
         protected override void Update()
         {
+            // Decrement reload timer
             if (m_ReloadTimeout > 0f)
             {
                 m_ReloadTimeout -= Time.deltaTime;
@@ -107,6 +117,14 @@ namespace NeoFPS.ModularFirearms
                     ReloadInternal();
                     m_ReloadTimeout = 0f;
                 }
+            }
+
+            // Decrement blocking timer
+            if (m_BlockingTimeout > 0f)
+            {
+                m_BlockingTimeout -= Time.deltaTime;
+                if (m_BlockingTimeout <= 0f)
+                    m_BlockingTimeout = 0f;
             }
         }
 
@@ -122,7 +140,9 @@ namespace NeoFPS.ModularFirearms
         protected override void OnDisable()
         {
             base.OnDisable();
+            m_Reloaded = true;
             m_ReloadTimeout = 0f;
+            m_BlockingTimeout = 0f;
             m_WaitingOnExternalTrigger = false;
         }
 
@@ -144,6 +164,24 @@ namespace NeoFPS.ModularFirearms
             chambered = (to > 0);
         }
 
+        public override void ManualReloadPartial()
+        {
+            if (reloadDelayType != FirearmDelayType.ExternalTrigger)
+            {
+                //Debug.LogError("Attempting to manually signal weapon reloaded when delay type is not set to custom");
+                return;
+            }
+            if (!m_WaitingOnExternalTrigger)
+            {
+                Debug.LogError("Attempting to manually signal weapon reloaded when not waiting for reload");
+                return;
+            }
+            // Reload and reset trigger
+            if (!m_Reloaded)
+                ReloadInternal();
+            m_Reloaded = true;
+        }
+
         public override void ManualReloadComplete()
         {
             if (reloadDelayType != FirearmDelayType.ExternalTrigger)
@@ -157,7 +195,11 @@ namespace NeoFPS.ModularFirearms
                 return;
             }
             // Reload and reset trigger
-            ReloadInternal();
+            if (!m_Reloaded)
+            {
+                ReloadInternal();
+                m_Reloaded = true;
+            }
             m_WaitingOnExternalTrigger = false;
         }
 
@@ -179,12 +221,21 @@ namespace NeoFPS.ModularFirearms
                         ReloadInternal();
                         break;
                     case FirearmDelayType.ElapsedTime:
-                        if (m_ReloadTimeout == 0f)
+                        if (m_BlockingTimeout == 0f)
                         {
                             // Fire started event
                             SendReloadStartedEvent();
-                            // Set timer
-                            m_ReloadTimeout = (chambered) ? m_ReloadDuration : m_ReloadDurationEmpty;
+                            // Set timers
+                            if (chambered)
+                            {
+                                m_ReloadTimeout = m_ReloadDuration;
+                                m_BlockingTimeout = m_BlockingDuration;
+                            }
+                            else
+                            {
+                                m_ReloadTimeout = m_ReloadDurationEmpty;
+                                m_BlockingTimeout = m_BlockingDurationEmpty;
+                            }
                             // Trigger animation
                             if (m_ReloadAnimTriggerHash != -1)
                                 firearm.animationHandler.SetTrigger(m_ReloadAnimTriggerHash);
@@ -197,6 +248,8 @@ namespace NeoFPS.ModularFirearms
                             SendReloadStartedEvent();
                             // Set trigger
                             m_WaitingOnExternalTrigger = true;
+                            // Set as not reloaded
+                            m_Reloaded = false;
                             // Trigger animation
                             if (m_ReloadAnimTriggerHash != -1)
                                 firearm.animationHandler.SetTrigger(m_ReloadAnimTriggerHash);
@@ -220,11 +273,17 @@ namespace NeoFPS.ModularFirearms
 
         private static readonly NeoSerializationKey k_TimeoutKey = new NeoSerializationKey("timeout");
         private static readonly NeoSerializationKey k_ChamberedKey = new NeoSerializationKey("chambered");
+        private static readonly NeoSerializationKey k_BlockingKey = new NeoSerializationKey("blocking");
+        private static readonly NeoSerializationKey k_ReloadedKey = new NeoSerializationKey("reloaded");
 
         public override void WriteProperties(INeoSerializer writer, NeoSerializedGameObject nsgo, SaveMode saveMode)
         {
             if (saveMode == SaveMode.Default)
+            {
                 writer.WriteValue(k_TimeoutKey, m_ReloadTimeout);
+                writer.WriteValue(k_BlockingKey, m_BlockingTimeout);
+                writer.WriteValue(k_ReloadedKey, m_Reloaded);
+            }
 
             writer.WriteValue(k_ChamberedKey, m_Chambered);
 
@@ -234,7 +293,10 @@ namespace NeoFPS.ModularFirearms
         public override void ReadProperties(INeoDeserializer reader, NeoSerializedGameObject nsgo)
         {
             reader.TryReadValue(k_TimeoutKey, out m_ReloadTimeout, m_ReloadTimeout);
+            reader.TryReadValue(k_BlockingKey, out m_BlockingTimeout, m_BlockingTimeout);
+            reader.TryReadValue(k_ReloadedKey, out m_Reloaded, m_Reloaded);
             reader.TryReadValue(k_ChamberedKey, out m_Chambered, m_Chambered);
+
             base.ReadProperties(reader, nsgo);
         }
 

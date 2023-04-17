@@ -1253,6 +1253,13 @@ namespace NeoSaveGames
         }
 
 
+        IEnumerator ReportFailure(SaveGameType saveType)
+        {
+            yield return null;
+
+            onSaveFailed?.Invoke(saveType);
+        }
+
         class SaveGameJob : AsyncSaveLoadJob
         {
             private DateTime m_SaveTime = new DateTime();
@@ -1273,19 +1280,33 @@ namespace NeoSaveGames
             {
                 WaitOnMainThreadTask(SaveGameCoroutine(m_SaveType, m_SaveTitle));
 
-                // Write to stream
-                using (var fstream = File.Create(m_SaveFilePath))
+                if (manager.serializer.isReadyToWrite)
                 {
-                    manager.serializer.WriteToStream(fstream);
+                    // Write to stream
+                    using (var fstream = File.Create(m_SaveFilePath))
+                    {
+                        manager.serializer.WriteToStream(fstream);
+                    }
+
+                    // Perform the onComplete
+                    m_OnComplete?.Invoke();
+
+                    // Refresh available saves (also deletes excess)
+                    WaitOnMainThreadTask(manager.RefreshAvailableSaves());
+
+                    // Signal completed
+                    completed = true;
+                    onSaveCompleted?.Invoke(m_SaveType);
                 }
-                // Perform the onComplete
-                if (m_OnComplete != null)
-                    m_OnComplete();
-                // Refresh available saves (also deletes excess)
-                WaitOnMainThreadTask(manager.RefreshAvailableSaves());
-                // Signal completed
-                completed = true;
-                onSaveCompleted?.Invoke(m_SaveType);
+                else
+                {
+                    manager.serializer.EndSerialization();
+
+                    WaitOnMainThreadTask(manager.ReportFailure(m_SaveType));
+
+                    // Signal completed
+                    completed = true;
+                }
             }
 
             IEnumerator SaveGameCoroutine(SaveGameType type, string title)

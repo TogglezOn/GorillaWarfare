@@ -89,7 +89,7 @@ namespace NeoFPS
         bool FilterItem(IInventoryItem item)
         {
             // Filter wieldables
-            if (m_IgnoreWieldables && (item is FpsInventoryWieldable || item is FpsInventoryWieldableSwappable))
+            if (m_IgnoreWieldables && item is IQuickSlotItem)
                 return false;
 
             // Filter ignored items

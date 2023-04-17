@@ -394,30 +394,35 @@ namespace NeoFPSEditor.Hub.Pages
         {
             SettingsService.OpenProjectSettings("Project/Tags and Layers");
             currentLayersVersion = k_TargetLayersVersion;
+            RefreshNotification();
         }
 
         void ShowPhysicsSettings()
         {
             SettingsService.OpenProjectSettings("Project/Physics");
             currentPhysicsVersion = k_TargetPhysicsVersion;
+            RefreshNotification();
         }
 
         void ShowInputSettings()
         {
             SettingsService.OpenProjectSettings("Project/Input");
             currentInputVersion = k_TargetInputVersion;
+            RefreshNotification();
         }
 
         void ShowBuildSettings()
         {
             EditorApplication.ExecuteMenuItem("File/Build Settings...");
             currentBuildSettingsVersion = k_TargetBuildSettingsVersion;
+            RefreshNotification();
         }
 
         void ShowPlayerSettings()
         {
             SettingsService.OpenProjectSettings("Project/Player");
             currentPlayerSettingsVersion = k_TargetPlayerSettingsVersion;
+            RefreshNotification();
         }
 
         void MarkAllAsGood()
@@ -427,6 +432,7 @@ namespace NeoFPSEditor.Hub.Pages
             currentInputVersion = k_TargetInputVersion;
             currentBuildSettingsVersion = k_TargetBuildSettingsVersion;
             currentPlayerSettingsVersion = k_TargetPlayerSettingsVersion;
+            RefreshNotification();
         }
 
         public static bool ShowOutOfDateWarning(out string message)
@@ -495,39 +501,6 @@ namespace NeoFPSEditor.Hub.Pages
         private bool m_HdrpInstalled = false;
         private bool m_HdrpParticleShadersInstalled = false;
         private bool m_PostProcessingInstalled = false;
-
-        //private static Texture2D m_FoundTexture = null;
-        //public static Texture2D foundTexture
-        //{
-        //    get
-        //    {
-        //        if (m_FoundTexture == null)
-        //            m_FoundTexture = EditorGUIUtility.FindTexture("console.infoicon.sml");
-        //        return m_FoundTexture;
-        //    }
-        //}
-
-        //private static Texture2D m_ErrorTexture = null;
-        //public static Texture2D errorTexture
-        //{
-        //    get
-        //    {
-        //        if (m_ErrorTexture == null)
-        //            m_ErrorTexture = EditorGUIUtility.FindTexture("console.erroricon.sml");
-        //        return m_ErrorTexture;
-        //    }
-        //}
-
-        //private static Texture2D m_WarningTexture = null;
-        //public static Texture2D warningTexture
-        //{
-        //    get
-        //    {
-        //        if (m_WarningTexture == null)
-        //            m_WarningTexture = EditorGUIUtility.FindTexture("console.warnicon.sml");
-        //        return m_WarningTexture;
-        //    }
-        //}
 
         private static GUIContent m_LabelBirpOK = null;
         public static GUIContent labelBirpOK
@@ -927,7 +900,7 @@ namespace NeoFPSEditor.Hub.Pages
 
             // Guide
             if (GUI.Button(rect, "High-Definition RP Guide"))
-                Application.OpenURL(k_UrpGuide);
+                Application.OpenURL(k_HdrpGuide);
 
             // Docs
             rect.x += rect.width + 2;

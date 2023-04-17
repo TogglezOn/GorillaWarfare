@@ -49,3 +49,7 @@ CHANGES:
   - Blocks input for current context if switched to this frame (prevents shooting if the context change was triggered by a mouse click for example)
   - Added UI input actions asset for use in UI event handler
   - Added input system UI event handler prefab for easier UI setup
+- V7
+  - Added position market to virtual analog
+  - Allowed specifying inputs for quick slot selection for new instant use and quick use item slots
+  - Added InputFirearmWithMelee input handler for adding a melee weapon to a firearm

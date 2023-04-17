@@ -6484,7 +6484,8 @@ MonoBehaviour:
   m_MagazineSize: 30
   m_StartingMagazine: 30
   m_ReloadDelayType: 1
-  m_ReloadDuration: 2.5
+  m_ReloadDuration: 1.4
+  m_BlockingDuration: 2.5
   m_ReloadAnimTrigger: Reload
   m_ReloadAudio: {fileID: 8300000, guid: 6d2abda95a30ec24b9fdfddf38f7d1ae, type: 3}
   m_Volume: 1
@@ -7032,6 +7033,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_FireEventOnStart: 1
 --- !u!114 &91003943486864428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9591,7 +9593,7 @@ GameObject:
   - component: {fileID: 7149036683518131881}
   - component: {fileID: 7149036683518934671}
   - component: {fileID: 7149036683519900751}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: DFAR_ChargingHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9671,7 +9673,7 @@ GameObject:
   - component: {fileID: 7149036683518131897}
   - component: {fileID: 7149036683518934687}
   - component: {fileID: 7149036683519900767}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: DFAR_Muzzle_5Way
   m_TagString: Untagged
   m_Icon: {fileID: 0}

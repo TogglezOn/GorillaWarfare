@@ -10,7 +10,7 @@ using NeoSaveGames;
 namespace NeoFPS
 {
     [HelpURL("https://docs.neofps.com/manual/inventoryref-mb-fpsinventorywieldableswappable.html")]
-    public class FpsInventoryWieldableSwappable : FpsInventoryItemBase, IQuickSlotItem
+    public class FpsInventoryWieldableSwappable : FpsInventoryItemBase, IQuickSlotItem, ISwappable
     {
         [SerializeField, HideInInspector]
         private FpsInventoryKey m_ItemKey = FpsInventoryKey.Undefined;
@@ -128,9 +128,9 @@ namespace NeoFPS
 
         public override void OnRemoveFromInventory()
         {
-            if (m_QuickSlot != -1)
-                fpsInventory.SetSlotItem(quickSlot, null);
-            m_QuickSlot = -1;
+            if (m_QuickSlot >= 0)
+                fpsInventory.SetSlotItem(m_QuickSlot, null);
+            m_QuickSlot = -2;
             base.OnRemoveFromInventory();
         }
 
@@ -309,6 +309,11 @@ namespace NeoFPS
             get { return m_QuickSlot != -1; }
         }
 
+        public bool isUsable
+        {
+            get { return false; }
+        }
+
         public bool isDroppable
         {
             get { return m_DropObject != null; }
@@ -337,6 +342,8 @@ namespace NeoFPS
 
             return true;
         }
+
+        public void UseItem() { }
 
         #endregion
     }

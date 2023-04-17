@@ -160,6 +160,7 @@ namespace NeoFPS
         {
             // Create flare (impact point) object
             var flareGO = new GameObject("LaserFlare");
+            flareGO.layer = gameObject.layer;
             m_FlareTransform = flareGO.transform;
             m_FlareTransform.SetParent(m_LaserSource);
 

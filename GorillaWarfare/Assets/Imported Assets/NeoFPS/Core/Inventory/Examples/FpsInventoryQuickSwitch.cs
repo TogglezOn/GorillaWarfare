@@ -54,9 +54,9 @@ namespace NeoFPS
 
 		protected override bool CanAddItem(IInventoryItem item)
 		{
-			if (item is FpsInventoryWieldableSwappable)
+			if (item is ISwappable)
 			{
-				Debug.LogError("Attempting to add swappable weapon to non-swappable inventory: " + item.gameObject.name);
+				Debug.LogError("Attempting to add swappable weapon or item to non-swappable inventory: " + item.gameObject.name);
 				return false;
 			}
 			else
@@ -159,19 +159,34 @@ namespace NeoFPS
 				SetSlotItem (i, null);
 		}
 
-		//public override bool IsSlotSelectable(int index)
-		//{
-		//	if (index < 0 || index >= numSlots)
-		//		return false;
-		//	if (selected == m_Slots[index] && !isBackupItemSelected)
-		//		return false;
-		//	if (m_Slots[index] == null)
-		//		return emptyAsBackupItem;
-		//	else
-		//		return m_Slots[index].isSelectable;
-		//}
+        //public override bool IsSlotSelectable(int index)
+        //{
+        //	if (index < 0 || index >= numSlots)
+        //		return false;
+        //	if (selected == m_Slots[index] && !isBackupItemSelected)
+        //		return false;
+        //	if (m_Slots[index] == null)
+        //		return emptyAsBackupItem;
+        //	else
+        //		return m_Slots[index].isSelectable;
+        //}
 
-		public override bool IsSlotSelectable(int index)
+        protected override bool CheckInstantUse(int index)
+		{
+			if (index < 0 || index >= numSlots)
+				return false;
+
+			var qs = m_Slots[index];
+			if (qs != null && qs.isUsable)
+			{
+				qs.UseItem();
+				return true;
+			}
+			else
+				return false;
+		}
+
+        public override bool IsSlotSelectable(int index)
 		{
 			if (index < 0 || index >= numSlots)
 				return false;
@@ -202,9 +217,10 @@ namespace NeoFPS
 		{
 			// Keep cycling until a valid slot is found (limited to number of slots)
 			for (int i = 1; i < numSlots; ++i)
-			{				
+			{
 				// Select the slot if possible
-				if (SelectSlot (m_History[i]))
+				int history = m_History[i];
+				if (IsSlotSelectable(history) && SelectSlot(history))
 					return true;
 			}
 
@@ -224,10 +240,9 @@ namespace NeoFPS
 			return success;
 		}
 
-		public override void SwitchSelection ()
+		public override bool SwitchSelection ()
 		{
-			if (!QuickSwapSlot ())
-				base.SwitchSelection ();
+			return QuickSwapSlot() || base.SwitchSelection();
 		}
 
 		void MoveToFrontOfHistory (int slot)

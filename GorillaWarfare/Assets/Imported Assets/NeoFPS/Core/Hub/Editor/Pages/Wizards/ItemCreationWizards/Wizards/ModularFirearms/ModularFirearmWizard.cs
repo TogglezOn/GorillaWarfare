@@ -1084,12 +1084,14 @@ namespace NeoFPSEditor.Hub.Pages.ItemCreationWizards
                             case 0: // anchor
                                 if (aimingStep.aimTarget != null)
                                 {
+                                    Transform aimTransform = WizardUtility.GetRelativeComponent(root.viewModel, displayObject, aimingStep.aimTarget.transform);
                                     WeaponMoveAimerEditor.BuildAimOffsetFromTransform(
                                         aimerSO.FindProperty("m_AimPosition"),
                                         aimerSO.FindProperty("m_AimRotation"),
                                         rootObject.transform.transform,
-                                        WizardUtility.GetRelativeComponent(root.viewModel, displayObject, aimingStep.aimTarget.transform)
+                                        aimTransform
                                         );
+                                    aimerSO.FindProperty("m_AimOffset").objectReferenceValue = aimTransform;
                                 }
                                 break;
                             case 1: // offsets
@@ -1199,20 +1201,21 @@ namespace NeoFPSEditor.Hub.Pages.ItemCreationWizards
                             case 0: // anchor
                                 if (aimingStep.aimTarget != null)
                                 {
+                                    Transform aimTransform = WizardUtility.GetRelativeComponent(root.viewModel, displayObject, aimingStep.aimTarget.transform);
                                     HeadMoveAimerEditor.BuildAimOffsetFromTransform(
-                                        aimerSO.FindProperty("m_AimPositionOffset"),
-                                        aimerSO.FindProperty("m_AimRotationOffset"),
+                                        aimerSO.FindProperty("m_AimPosition"),
+                                        aimerSO.FindProperty("m_AimRotation"),
                                         rootObject.transform.transform,
-                                        WizardUtility.GetRelativeComponent(root.viewModel, displayObject, aimingStep.aimTarget.transform)
+                                        aimTransform
                                         );
+                                    aimerSO.FindProperty("m_AimOffset").objectReferenceValue = aimTransform;
                                 }
                                 break;
                             case 1: // offsets
-                                aimerSO.FindProperty("m_AimPositionOffset").vector3Value = aimingStep.aimPosition;
-                                aimerSO.FindProperty("m_AimRotationOffset").vector3Value = aimingStep.aimRotation;
+                                aimerSO.FindProperty("m_AimPosition").vector3Value = aimingStep.aimPosition;
+                                aimerSO.FindProperty("m_AimRotation").vector3Value = aimingStep.aimRotation;
                                 break;
                         }
-
 
                         if (customAnimations)
                         {

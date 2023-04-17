@@ -49,9 +49,9 @@ namespace NeoFPS
 
 		protected override bool CanAddItem(IInventoryItem item)
 		{
-			if (item is FpsInventoryWieldableSwappable)
+			if (item is ISwappable)
 			{
-				Debug.LogError("Attempting to add swappable weapon to non-swappable inventory: " + item.gameObject.name);
+				Debug.LogError("Attempting to add swappable weapon or item to non-swappable inventory: " + item.gameObject.name);
 				return false;
 			}
 			else
@@ -154,7 +154,22 @@ namespace NeoFPS
 			    SetSlotItem (i, null);
 	    }
 
-	    public override bool IsSlotSelectable(int index)
+		protected override bool CheckInstantUse(int index)
+		{
+			if (index < 0 || index >= numSlots)
+				return false;
+
+			var qs = m_Slots[index];
+			if (qs != null && qs.isUsable)
+			{
+				qs.UseItem();
+				return true;
+			}
+			else
+				return false;
+		}
+
+		public override bool IsSlotSelectable(int index)
 	    {
 			if (isSelectionLocked)
 				return false;

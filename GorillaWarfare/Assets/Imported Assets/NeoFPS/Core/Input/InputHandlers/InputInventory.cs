@@ -18,6 +18,22 @@ namespace NeoFPS
         [SerializeField, Range(0.01f, 1f), Tooltip("The delay between repeating input when rolling the mouse scroll wheel.")]
         private float m_ScrollDelay = 0.1f;
 
+        [Header("Inputs")]
+
+        [SerializeField, Tooltip("The input buttons corresponding to each slot. If you have quick-melee / thrown inputs then you can map them to specific slots here.")]
+        private FpsInputButton[] m_SlotButtons = {
+            FpsInputButton.Quickslot1,
+            FpsInputButton.Quickslot2,
+            FpsInputButton.Quickslot3,
+            FpsInputButton.Quickslot4,
+            FpsInputButton.Quickslot5,
+            FpsInputButton.Quickslot6,
+            FpsInputButton.Quickslot7,
+            FpsInputButton.Quickslot8,
+            FpsInputButton.Quickslot9,
+            FpsInputButton.Quickslot10,
+        };
+
         private float m_WeaponCycleTimeout = 0f;
         private float m_ScrollTimer = 0f;
 
@@ -74,26 +90,11 @@ namespace NeoFPS
                     m_Character.quickSlots.SwitchSelection();
 
                 // Quickslots
-                if (GetButtonDown(FpsInputButton.Quickslot1))
-                    m_Character.quickSlots.SelectSlot(0);
-                if (GetButtonDown(FpsInputButton.Quickslot2))
-                    m_Character.quickSlots.SelectSlot(1);
-                if (GetButtonDown(FpsInputButton.Quickslot3))
-                    m_Character.quickSlots.SelectSlot(2);
-                if (GetButtonDown(FpsInputButton.Quickslot4))
-                    m_Character.quickSlots.SelectSlot(3);
-                if (GetButtonDown(FpsInputButton.Quickslot5))
-                    m_Character.quickSlots.SelectSlot(4);
-                if (GetButtonDown(FpsInputButton.Quickslot6))
-                    m_Character.quickSlots.SelectSlot(5);
-                if (GetButtonDown(FpsInputButton.Quickslot7))
-                    m_Character.quickSlots.SelectSlot(6);
-                if (GetButtonDown(FpsInputButton.Quickslot8))
-                    m_Character.quickSlots.SelectSlot(7);
-                if (GetButtonDown(FpsInputButton.Quickslot9))
-                    m_Character.quickSlots.SelectSlot(8);
-                if (GetButtonDown(FpsInputButton.Quickslot10))
-                    m_Character.quickSlots.SelectSlot(9);
+                for (int i = 0; i < m_SlotButtons.Length; ++i)
+                {
+                    if (m_SlotButtons[i] != FpsInputButton.None && GetButtonDown(m_SlotButtons[i]))
+                        m_Character.quickSlots.SelectSlot(i);
+                }
 
                 // Holster
                 if (GetButtonDown(FpsInputButton.Holster))

@@ -1,7 +1,5 @@
 //======================================================================================================
-// WARNING: This file is auto-generated.
-// Any manual changes will be lost.
-// Use the constant generator system instead
+// WARNING: This file is auto-generated. Any manual changes might be lost.
 //======================================================================================================
 
 using System;
@@ -19,10 +17,8 @@ namespace NeoFPS
 		public const int MoveY = 4;
 		public const int LookX = 5;
 		public const int LookY = 6;
-		public const int GyroX = 7;
-		public const int GyroY = 8;
 
-		public const int count = 9;
+		public const int count = 7;
 
 		public static readonly string[] names = new string[]
 		{
@@ -32,9 +28,8 @@ namespace NeoFPS
 			"MoveX",
 			"MoveY",
 			"LookX",
-			"LookY",
-			"GyroX",
-			"GyroY"
+			"LookY"
+
 		};
 
 		[SerializeField] 

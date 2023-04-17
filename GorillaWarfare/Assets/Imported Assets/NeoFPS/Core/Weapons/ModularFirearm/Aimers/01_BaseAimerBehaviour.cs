@@ -37,6 +37,18 @@ namespace NeoFPS.ModularFirearms
         private FpsCrosshair m_Crosshair = FpsCrosshair.Default;
         private FirearmAimState m_AimState = FirearmAimState.HipFire;
 
+        public event UnityAction onAimUp
+        {
+            add { m_OnAimUp.AddListener(value); }
+            remove { m_OnAimUp.RemoveListener(value); }
+        }
+
+        public event UnityAction onAimDown
+        {
+            add { m_OnAimDown.AddListener(value); }
+            remove { m_OnAimDown.RemoveListener(value); }
+        }
+
         public FpsCrosshair crosshair
         {
             get { return m_Crosshair; }

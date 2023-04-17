@@ -1271,7 +1271,7 @@ namespace NeoFPS.ModularFirearms
 
         public bool isBlocked
         {
-            get { return m_Blockers.Count > 0; }
+            get { return m_Blockers.Count > 0 || m_OnSelectCoroutine != null; }
         }
 
         public void AddBlocker(Object o)

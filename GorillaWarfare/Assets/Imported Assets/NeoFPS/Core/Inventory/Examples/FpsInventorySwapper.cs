@@ -11,7 +11,7 @@ namespace NeoFPS
         private bool m_IsSelected = false;
         private int m_SelectedIndex = 0;
         private int m_ActiveSlots = 0;
-        
+
         public IWieldable wieldable
         {
             get
@@ -73,6 +73,11 @@ namespace NeoFPS
             get { return m_Contents[m_SelectedIndex].isSelectable; }
         }
 
+        public bool isUsable
+        {
+            get { return false; }
+        }
+
         public bool isDroppable
         {
             get { return m_Contents[m_SelectedIndex].isDroppable; }
@@ -118,6 +123,8 @@ namespace NeoFPS
             // Deselect selected child
             return m_Contents[m_SelectedIndex].OnDeselect();
         }
+
+        public void UseItem() { }
 
         public bool DropItem(Vector3 position, Vector3 forward, Vector3 velocity)
         {

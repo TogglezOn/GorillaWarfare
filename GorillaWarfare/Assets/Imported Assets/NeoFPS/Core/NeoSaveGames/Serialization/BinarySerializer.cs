@@ -35,6 +35,11 @@ namespace NeoSaveGames.Serialization
             get { return m_State != SerializerState.Idle; }
         }
 
+        public bool isReadyToWrite
+        {
+            get { return m_State == SerializerState.WaitingForWrite; }
+        }
+
         public int byteLength
         {
             get { return m_TotalLength; }
@@ -70,23 +75,36 @@ namespace NeoSaveGames.Serialization
         public void EndSerialization()
         {
             if (!CheckEndingContext())
+            {
                 Debug.LogError("Unbalanced push/pop for serialization contexts. Serialization did not end on the root context.");
 
-            switch (m_State)
+                // Reset to idle
+                m_State = SerializerState.Idle;
+
+                // Clear buffers
+                ClearBuffers();
+
+                // Clear context stack
+                m_CurrentContext.Clear();
+            }
+            else
             {
-                case SerializerState.CollectingData:
-                    {
-                        // Write the last index for the current buffer
-                        WriteBufferLength();
-                        m_State = SerializerState.WaitingForWrite;
-                    }
-                    break;
-                case SerializerState.Idle:
-                    Debug.LogError("Attempting to end serialization when it hasn't been started.");
-                    break;
-                case SerializerState.WritingData:
-                    Debug.LogError("Attempting to end serialization while writing data (has already been ended).");
-                    break;
+                switch (m_State)
+                {
+                    case SerializerState.CollectingData:
+                        {
+                            // Write the last index for the current buffer
+                            WriteBufferLength();
+                            m_State = SerializerState.WaitingForWrite;
+                        }
+                        break;
+                    case SerializerState.Idle:
+                        Debug.LogError("Attempting to end serialization when it hasn't been started.");
+                        break;
+                    case SerializerState.WritingData:
+                        Debug.LogError("Attempting to end serialization while writing data (has already been ended).");
+                        break;
+                }
             }
         }
 

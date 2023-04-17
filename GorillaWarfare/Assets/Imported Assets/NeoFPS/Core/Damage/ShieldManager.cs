@@ -46,6 +46,11 @@ namespace NeoFPS
         private float m_InterruptTimer = 0f;
         private int m_CurrentStep = 0;
 
+        public bool isFull
+        {
+            get { return Mathf.Approximately(shield, m_StepCount * m_StepCapacity); }
+        }
+
         public ShieldState shieldState
         {
             get { return m_ShieldState; }

@@ -22,11 +22,15 @@ namespace NeoFPS
         private int[] m_GroupSizes = new int[0];
 
 		private Dictionary<int, List<FpsInventoryItemBase>> m_Items = null;
+		private Dictionary<int, int> m_SaveSlotsMap = null;
 		private IQuickSlotItem[] m_Slots = null;
         private ItemGroup[] m_ItemGroups = null;
         private bool m_Initialised = false;
+		private bool m_Swapping = false;
 
-        protected override DuplicateEntryBehaviourFull duplicateBehaviour
+		public event UnityAction<FpsSwappableCategory, bool> onCategoryFullChanged;
+
+		protected override DuplicateEntryBehaviourFull duplicateBehaviour
 		{
 			get { return m_DuplicateBehaviour; }
 		}
@@ -60,6 +64,18 @@ namespace NeoFPS
 			    for (int i = 0; i < this.count; ++i)
 				    m_History[i] = -1;
 		    }
+
+			public int GetNumAvailableSlots()
+			{
+				// Check for empty slots
+				int available = 0;
+				for (int i = 0; i < count; ++i)
+				{
+					if (m_Inventory.m_Slots[startIndex + i] == null)
+						++available;
+				}
+				return available;
+			}
 		    
 		    public int GetAvailableSlot ()
 		    {
@@ -138,6 +154,7 @@ namespace NeoFPS
         }
 
         private static readonly NeoSerializationKey k_HistoryKey = new NeoSerializationKey("history");
+		private static readonly NeoSerializationKey k_SlotMapKey = new NeoSerializationKey("slotMap");
 
 		protected override void Awake ()
 		{
@@ -192,12 +209,12 @@ namespace NeoFPS
                 }
 
                 m_Initialised = true;
-            }
+			}
         }
 
         protected override bool CanAddItem(IInventoryItem item)
         {
-			var swappable = item as FpsInventoryWieldableSwappable;
+			var swappable = item as ISwappable;
 			if (swappable != null)
 				return m_GroupSizes[swappable.category] > 0;
 			else
@@ -310,7 +327,7 @@ namespace NeoFPS
 			return false;
 		}
 
-		public int GetSlotForItem (FpsInventoryWieldableSwappable item)
+		public int GetSlotForItem (ISwappable item)
 	    {
 		    if (item.category < 0 || item.category >= m_ItemGroups.Length)
 			    return -1;
@@ -344,29 +361,60 @@ namespace NeoFPS
 			if (slot < 0 || slot >= m_Slots.Length || m_Slots[slot] == item)
 				return;
 
+			int groupIndex = GetGroupForSlot(slot);
+			if (groupIndex == -1)
+				return;
+
+			// Check if category was full beforehand
+			bool before = m_ItemGroups[groupIndex].GetNumAvailableSlots() == 0;
+
+			// Choose what to do with old object
 			IQuickSlotItem old = m_Slots[slot];
 			if (old != null)
 			{
 				if (item == null)
 				{
-					int groupIndex = GetGroupForSlot (slot);
-					if (groupIndex != -1)
-						m_ItemGroups[groupIndex].OnClearSlot (slot);
+					m_ItemGroups[groupIndex].OnClearSlot (slot);
 				}
 				else
 				{
+					m_Swapping = true;
+
 					if (swapAction == SwapAction.Drop)
-						DropItem (old);
+						DropItem(old);
 					else
-						Destroy (old.gameObject);
+					{
+						RemoveItem(old as FpsInventoryItemBase);
+						Destroy(old.gameObject);
+					}
 				}
 			}
 			
+			// Set slot item
 			m_Slots [slot] = item;
 			OnSlotItemChanged(slot, item);
+
+			// Check if category is full after and fire event if it's changed
+			if (!m_Swapping)
+			{
+				bool after = m_ItemGroups[groupIndex].GetNumAvailableSlots() == 0;
+				if (before != after)
+					onCategoryFullChanged?.Invoke(groupIndex, after);
+			}
 		}
 
-		public override IQuickSlotItem GetSlotItem(int slot)
+        protected override void SwitchSelectionOnRemove(IInventoryItem removed)
+        {
+			if (!m_Swapping)
+				base.SwitchSelectionOnRemove(removed);
+			else
+				SetSelected(null, -2, true, false);
+
+			// Reset swapping flag
+			m_Swapping = false;
+		}
+
+        public override IQuickSlotItem GetSlotItem(int slot)
 		{
 			return m_Slots [slot];
 		}
@@ -375,6 +423,21 @@ namespace NeoFPS
 		{
 			for (int i = 0; i < m_Slots.Length; ++i)
 				SetSlotItem (i, null);
+		}
+
+		protected override bool CheckInstantUse(int index)
+		{
+			if (index < 0 || index >= numSlots)
+				return false;
+
+			var qs = m_Slots[index];
+			if (qs != null && qs.isUsable)
+			{
+				qs.UseItem();
+				return true;
+			}
+			else
+				return false;
 		}
 
 		public override bool IsSlotSelectable(int index)
@@ -475,9 +538,5 @@ namespace NeoFPS
 			// Discard slot map. It's only needed during base.ReadProperties
 			m_SaveSlotsMap = null;
 		}
-
-		private static readonly NeoSerializationKey k_SlotMapKey = new NeoSerializationKey("slotMap");
-
-		private Dictionary<int, int> m_SaveSlotsMap = null;
     }
 }

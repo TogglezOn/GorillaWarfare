@@ -15,15 +15,15 @@ namespace NeoFPS
 		[SerializeField, Tooltip("The property key for the character motion graph (switch)")]
         private string m_AimingKey = "aiming";
 
-		private IModularFirearm m_Firearm = null;
-        private MonoBehaviour m_FirearmBehaviour = null;
-        private bool m_IsPlayer = false;
-		private bool m_IsAlive = false;
-		private int m_AimingKeyHash = -1;
-		private ICharacter m_Character = null;
-        private AnimatedWeaponInspect m_Inspect = null;
-        private SwitchParameter m_AimProperty = null;
-		private bool m_EnabledFiring = false;
+		protected IModularFirearm m_Firearm = null;
+		protected MonoBehaviour m_FirearmBehaviour = null;
+		protected bool m_IsPlayer = false;
+		protected bool m_IsAlive = false;
+		protected int m_AimingKeyHash = -1;
+		protected ICharacter m_Character = null;
+		protected AnimatedWeaponInspect m_Inspect = null;
+		protected SwitchParameter m_AimProperty = null;
+		protected bool m_EnabledFiring = false;
 
         public override FpsInputContext inputContext
         {
@@ -192,6 +192,10 @@ namespace NeoFPS
 
 			m_EnabledFiring = false;
 
+			AdditionalFirearmInput();
 		}
+
+		protected virtual void AdditionalFirearmInput()
+		{ }
 	}
 }

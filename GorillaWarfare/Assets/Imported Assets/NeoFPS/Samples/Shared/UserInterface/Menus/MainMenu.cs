@@ -33,6 +33,10 @@ namespace NeoFPS.Samples
 		void OnQuitYes ()
 		{
 			Application.Quit ();
+
+#if UNITY_EDITOR
+			UnityEditor.EditorApplication.isPlaying = false;
+#endif
 		}
 
 		void OnQuitNo ()
