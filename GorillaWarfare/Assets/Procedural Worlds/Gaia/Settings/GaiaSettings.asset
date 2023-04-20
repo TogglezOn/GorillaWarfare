@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0b22f014ec7be40896c70f04417587, type: 3}
   m_Name: GaiaSettings
   m_EditorClassIdentifier: 
-  m_currentController: 5
+  m_currentController: 0
   m_customPlayerObject: {fileID: 1000010381446024, guid: 70955ee021873b549a4fb28b70d927b2,
     type: 3}
   m_customPlayerCamera: {fileID: 0}
   m_instantiateCustomControllers: 0
-  m_currentSize: 3
+  m_currentSize: 0
   m_currentEnvironment: 2
   m_currentRenderer: 0
   m_currentDefaults: {fileID: 11400000, guid: 54f4fac3c7f0a1e44a45853d26c87b49, type: 2}
@@ -25,8 +25,8 @@ MonoBehaviour:
   m_tilesZ: 1
   m_createTerrainScenes: 0
   m_unloadTerrainScenes: 0
-  m_floatingPointFix: 1
-  m_targeSizePreset: 3
+  m_floatingPointFix: 0
+  m_targeSizePreset: 0
   m_creationWorkflow: 1
   m_defaultStampSpawnSettings: {fileID: 11400000, guid: 81b0e93a964e9804c9806f8bde6ba9ec,
     type: 2}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_WDHeightsComputeShader: {fileID: 7200000, guid: 3e1385d604d0e8d47b9e2d04c7f07110,
     type: 3}
   m_currentSizeDivisor: 1
-  m_currentPlayerPrefabName: FlyCam
+  m_currentPlayerPrefabName: FPSController
   m_flyCamUI: {fileID: 1987081325453708, guid: c22749c16bfe8aa428f5e54cf7cc6505, type: 3}
   m_currentWaterPrefabName: Water4Advanced
   m_saveCollisionCacheWhenSaving: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_currentWater: 0
   m_enableUnderwaterEffects: 1
   m_createWind: 1
-  m_windType: 1
+  m_windType: 3
   m_createScreenShotter: 1
   m_focusPlayerOnSetup: 0
   m_FPFDefaultThreshold: 5000
