@@ -16,6 +16,13 @@ TagManager:
   - Wood (Static)
   - Dirt (Static)
   - Wood
+  - AI
+  - PW - Nature
+  - Synty Medium Farm
+  - Synty Small Farm
+  - PW - Prop
+  - PW - Building
+  - Synty Tree
   layers:
   - Default
   - TransparentFX
@@ -33,10 +40,10 @@ TagManager:
   - Post Processing Scope
   - Invisible Wall
   - Projectile
-  - 
-  - 
-  - 
-  - 
+  - PW_VFX
+  - PW_Object_Small
+  - PW_Object_Medium
+  - PW_Object_Large
   - 
   - 
   - 
