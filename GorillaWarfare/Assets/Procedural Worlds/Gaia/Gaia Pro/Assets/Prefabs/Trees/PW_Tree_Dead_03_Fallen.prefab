@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2131124990257274816}
   - component: {fileID: 4767953358773472421}
   - component: {fileID: 6418585761246081713}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_03_01_LOD0
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5071330078189326275}
   m_RootOrder: 0
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -92,7 +94,7 @@ GameObject:
   - component: {fileID: 3878817846593013705}
   - component: {fileID: 7814512697438721915}
   - component: {fileID: 7834450935239888860}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_03_01_LOD3
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -109,6 +111,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5071330078189326275}
   m_RootOrder: 3
@@ -132,6 +135,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -173,7 +177,7 @@ GameObject:
   - component: {fileID: 4251537955259570496}
   - component: {fileID: 6126396572856476670}
   - component: {fileID: 1720509337061140837}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_03_01_LOD1
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -190,6 +194,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5071330078189326275}
   m_RootOrder: 1
@@ -213,6 +218,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -254,7 +260,7 @@ GameObject:
   - component: {fileID: 5071330078189326275}
   - component: {fileID: 5625951685692135687}
   - component: {fileID: 2784553366283158568}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_03_Fallen
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -271,6 +277,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2131124990257274816}
   - {fileID: 4251537955259570496}
@@ -338,7 +345,7 @@ GameObject:
   - component: {fileID: 8638114658221875777}
   - component: {fileID: 1177562236982645603}
   - component: {fileID: 6380434207077823107}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_03_01_LOD2
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -355,6 +362,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5071330078189326275}
   m_RootOrder: 2
@@ -378,6 +386,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -513,7 +522,7 @@ PrefabInstance:
     - target: {fileID: 8727889272959750815, guid: f4d24860265fece4c8c48432ab5d7598,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8727889272959750815, guid: f4d24860265fece4c8c48432ab5d7598,
         type: 3}
@@ -643,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 3904196282817558939, guid: c00c27017682fc24d939a8c8479fc115,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3904196282817558939, guid: c00c27017682fc24d939a8c8479fc115,
         type: 3}
@@ -773,7 +782,7 @@ PrefabInstance:
     - target: {fileID: 8727889272959750815, guid: f4d24860265fece4c8c48432ab5d7598,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8727889272959750815, guid: f4d24860265fece4c8c48432ab5d7598,
         type: 3}

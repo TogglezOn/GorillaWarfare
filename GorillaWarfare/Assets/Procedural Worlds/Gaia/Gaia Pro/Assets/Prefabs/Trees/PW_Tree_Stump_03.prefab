@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3936731612905706632}
   - component: {fileID: 7267663216687005264}
   - component: {fileID: 7858666040435973366}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: PW_Tree_Stump_03_LOD0
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7782479980285445493}
   m_RootOrder: 0
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -92,7 +94,7 @@ GameObject:
   - component: {fileID: 8476006518162849159}
   - component: {fileID: 2153263711467062720}
   - component: {fileID: 8855610716085850078}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: PW_Tree_Stump_03_LOD2
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -109,6 +111,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7782479980285445493}
   m_RootOrder: 2
@@ -132,6 +135,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -173,7 +177,7 @@ GameObject:
   - component: {fileID: 2440283567782722760}
   - component: {fileID: 7689961649408668275}
   - component: {fileID: 2350770948990203063}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: PW_Tree_Stump_03_LOD3
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -190,6 +194,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7782479980285445493}
   m_RootOrder: 3
@@ -213,6 +218,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -254,7 +260,7 @@ GameObject:
   - component: {fileID: 7782479980285445493}
   - component: {fileID: 7238255304134808497}
   - component: {fileID: 2807463579855921848}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: PW_Tree_Stump_03
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -271,6 +277,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3936731612905706632}
   - {fileID: 2284840866829972007}
@@ -341,7 +348,7 @@ GameObject:
   - component: {fileID: 2284840866829972007}
   - component: {fileID: 4708963517984549010}
   - component: {fileID: 7547800984475891857}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: PW_Tree_Stump_03_LOD1
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -358,6 +365,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7782479980285445493}
   m_RootOrder: 1
@@ -381,6 +389,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -526,7 +535,7 @@ PrefabInstance:
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
@@ -656,7 +665,7 @@ PrefabInstance:
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
@@ -791,7 +800,7 @@ PrefabInstance:
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
@@ -916,7 +925,7 @@ PrefabInstance:
     - target: {fileID: 2858236725607895622, guid: a47e7114707e37e4ba34f36ceab88a54,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2858236725607895622, guid: a47e7114707e37e4ba34f36ceab88a54,
         type: 3}
@@ -1061,7 +1070,7 @@ PrefabInstance:
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
@@ -1191,7 +1200,7 @@ PrefabInstance:
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7841785909587178294, guid: 23b86de1dac0f264f98098a888d1177a,
         type: 3}

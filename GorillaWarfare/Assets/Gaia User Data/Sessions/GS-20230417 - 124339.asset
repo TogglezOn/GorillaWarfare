@@ -63,15 +63,15 @@ MonoBehaviour:
     m_terrainsFoldedOut: 0
     m_serializedExternalAction: 
   m_terrainMinMaxCache:
-  - guid: Worldmap
-    isWorldmap: 1
-    recalculate: 0
-    min: 0.029907562
-    max: 14.012582
   - guid: 7698835a1fe7a844bb468873ce78a956
     isWorldmap: 0
     recalculate: 0
     min: 0
     max: 30.867659
+  - guid: Worldmap
+    isWorldmap: 1
+    recalculate: 0
+    min: 0
+    max: 0
   m_bakedMaskCacheEntries: []
   m_worldBiomeMaskSettings: {fileID: 0}

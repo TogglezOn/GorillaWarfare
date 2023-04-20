@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7809893472676372110}
   - component: {fileID: 3223287153309777335}
   - component: {fileID: 7836156628747606357}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Log_01_01_LOD1
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6633075048817664488}
   m_RootOrder: 1
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -92,7 +94,7 @@ GameObject:
   - component: {fileID: 4802478988405050310}
   - component: {fileID: 3731857574323013767}
   - component: {fileID: 1601977928864271926}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Log_01_01_LOD0
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -109,6 +111,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6633075048817664488}
   m_RootOrder: 0
@@ -132,6 +135,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -173,7 +177,7 @@ GameObject:
   - component: {fileID: 3819314766298719346}
   - component: {fileID: 9134868969487929287}
   - component: {fileID: 3239123811761038338}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Log_01_01_LOD2
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -190,6 +194,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6633075048817664488}
   m_RootOrder: 2
@@ -213,6 +218,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -254,7 +260,7 @@ GameObject:
   - component: {fileID: 6633075048817664488}
   - component: {fileID: 6088572076099286828}
   - component: {fileID: 2388627098929330399}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Log_01_01
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -271,6 +277,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4802478988405050310}
   - {fileID: 7809893472676372110}
@@ -419,7 +426,7 @@ PrefabInstance:
     - target: {fileID: 4431527796783460936, guid: 92e0123bb2a999842bd9f0245e846fc8,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4431527796783460936, guid: 92e0123bb2a999842bd9f0245e846fc8,
         type: 3}
@@ -479,7 +486,7 @@ PrefabInstance:
     - target: {fileID: 1649531001116778192, guid: 27a286d07e1e36544976b9e8d634ef96,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1649531001116778192, guid: 27a286d07e1e36544976b9e8d634ef96,
         type: 3}
@@ -649,7 +656,7 @@ PrefabInstance:
     - target: {fileID: 4431527796783460936, guid: 92e0123bb2a999842bd9f0245e846fc8,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4431527796783460936, guid: 92e0123bb2a999842bd9f0245e846fc8,
         type: 3}
@@ -709,7 +716,7 @@ PrefabInstance:
     - target: {fileID: 1649531001116778192, guid: 27a286d07e1e36544976b9e8d634ef96,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1649531001116778192, guid: 27a286d07e1e36544976b9e8d634ef96,
         type: 3}
@@ -909,7 +916,7 @@ PrefabInstance:
     - target: {fileID: 4431527796783460936, guid: 92e0123bb2a999842bd9f0245e846fc8,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4431527796783460936, guid: 92e0123bb2a999842bd9f0245e846fc8,
         type: 3}

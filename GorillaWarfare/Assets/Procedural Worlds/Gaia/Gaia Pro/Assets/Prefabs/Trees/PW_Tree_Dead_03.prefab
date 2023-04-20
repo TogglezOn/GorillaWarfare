@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4832169140583030398}
   - component: {fileID: 431864184587515351}
   - component: {fileID: 8893775290586457798}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_01_03_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8010490136969344075}
   m_RootOrder: 1
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -92,7 +94,7 @@ GameObject:
   - component: {fileID: 3291431508777174456}
   - component: {fileID: 5966674903953071266}
   - component: {fileID: 166728620785627858}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_01_03_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,6 +111,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8010490136969344075}
   m_RootOrder: 0
@@ -132,6 +135,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -173,7 +177,7 @@ GameObject:
   - component: {fileID: 564730952014977620}
   - component: {fileID: 7060591841010235957}
   - component: {fileID: 5613537303329729214}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_01_03_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +194,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8010490136969344075}
   m_RootOrder: 2
@@ -213,6 +218,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -254,7 +260,7 @@ GameObject:
   - component: {fileID: 8010490136969344075}
   - component: {fileID: 7447094238906016399}
   - component: {fileID: 7499237333723080543}
-  m_Layer: 10
+  m_Layer: 18
   m_Name: PW_Tree_Dead_03
   m_TagString: PW - Nature
   m_Icon: {fileID: 0}
@@ -271,6 +277,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3291431508777174456}
   - {fileID: 4832169140583030398}
@@ -339,7 +346,7 @@ PrefabInstance:
     - target: {fileID: 2580472008265912047, guid: 1d8174bc9ef82774dbf6dd6bf63449e6,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2580472008265912047, guid: 1d8174bc9ef82774dbf6dd6bf63449e6,
         type: 3}
