@@ -17,4 +17,7 @@ MonoBehaviour:
   - m_masterScene: {fileID: 102900000, guid: 7048c14df1fef8049adc5d7187909c52, type: 3}
     m_serverScene: {fileID: 0}
     m_impostorState: 1
+  - m_masterScene: {fileID: 102900000, guid: e7e239cf679f4674898e4054eb0c306d, type: 3}
+    m_serverScene: {fileID: 0}
+    m_impostorState: 1
   m_buildHistory: []
