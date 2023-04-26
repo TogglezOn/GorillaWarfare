@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Jungle 1.unity
+    path: Assets/Scenes/Zoo 2.0.unity
     guid: b9ffc5d3cedb1dc4984b4581fccc40e7
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
