@@ -23,7 +23,7 @@ MonoBehaviour:
   m_terrainWidth: 256
   m_terrainDepth: 256
   m_terrainHeight: 256
-  m_seaLevel: 6.25
+  m_seaLevel: 2
   m_spawnDensity: 0.8
   m_isLocked: 0
   m_previewImageBytes: 
@@ -62,16 +62,58 @@ MonoBehaviour:
     sessionPlaybackState: 1
     m_terrainsFoldedOut: 0
     m_serializedExternalAction: 
+  - m_description: Clear World
+    m_operationType: 10
+    m_isActive: 1
+    m_affectedTerrainNames: []
+    m_operationDateTime: 4/26/2023 6:44:23 PM
+    scriptableObjectAssetGUID: 
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: 'Creating World: 1 x 1 tiles, tile size: 128'
+    m_operationType: 0
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20230426 - 184424
+    m_operationDateTime: 4/26/2023 6:44:24 PM
+    scriptableObjectAssetGUID: aba5962008ccbbc49bd8fbd6270b7e51
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (21)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20230426 - 184424
+    m_operationDateTime: 4/26/2023 6:45:08 PM
+    scriptableObjectAssetGUID: 43fbe322731fd5b4bb51d18c79606a8a
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
   m_terrainMinMaxCache:
   - guid: 7698835a1fe7a844bb468873ce78a956
     isWorldmap: 0
     recalculate: 0
     min: 0
     max: 30.867659
+  - guid: f00970c4ff8be4b4aa5a76674b8b1b61
+    isWorldmap: 0
+    recalculate: 0
+    min: 0
+    max: 6.2305636
   - guid: Worldmap
     isWorldmap: 1
     recalculate: 0
+    min: 0.08311295
+    max: 7.7105083
+  - guid: 368b57cb3432ec546aef6e6a38b4da6b
+    isWorldmap: 0
+    recalculate: 0
     min: 0
-    max: 0
+    max: 15.8478985
   m_bakedMaskCacheEntries: []
   m_worldBiomeMaskSettings: {fileID: 0}
