@@ -3924,11 +3924,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063131846327470, guid: bc74d088250b41448802cb0be5c6167a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.81
+      value: 16.51
       objectReference: {fileID: 0}
     - target: {fileID: 4063131846327470, guid: bc74d088250b41448802cb0be5c6167a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -225.7
+      value: -204.65
       objectReference: {fileID: 0}
     - target: {fileID: 4063131846327470, guid: bc74d088250b41448802cb0be5c6167a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13903,7 +13903,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-196410
+  m_Name: pb_Mesh179888
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18302,11 +18302,11 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093937838}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
+  m_Convex: 1
+  m_CookingOptions: -1
   m_Mesh: {fileID: 876543127}
 --- !u!33 &1093937840
 MeshFilter:
