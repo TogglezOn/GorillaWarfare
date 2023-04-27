@@ -6,14 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 26ec07bdda752ec4d95ab66546ed09a2
+  - enabled: 1
+    path: Assets/Scenes/Level Picker.unity
+    guid: bf774db6e24475448b7383b2dbc620e4
+  - enabled: 1
+    path: Assets/Scenes/Zoo 2.0.unity
+    guid: b9ffc5d3cedb1dc4984b4581fccc40e7
+  - enabled: 1
     path: Assets/Scenes/Level Zoo.unity
     guid: e7e239cf679f4674898e4054eb0c306d
   - enabled: 1
     path: Assets/Scenes/Jungle.unity
     guid: 7048c14df1fef8049adc5d7187909c52
   - enabled: 1
-    path: 
-    guid: 63fdc04a097eb0b4ba4af78a98dac40d
+    path: Assets/Scenes/City.unity
+    guid: a77a485626c75fe469eb8807ea4adee6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b2dce9136c1cc674c948382698b4086b,
       type: 2}
