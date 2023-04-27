@@ -15,5 +15,6 @@ public class InventoryUI : MonoBehaviour
    public void UpdateOrbText(PlayerInventory playerInventory)
     {
         orbsText.text = playerInventory.NumberOfOrbs.ToString();
+        Debug.Log("Changed Text");
     }
 }

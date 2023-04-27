@@ -12,6 +12,7 @@ public class GibbonOrb : MonoBehaviour
         {
             playerInvetory.OrbsCollected();
             gameObject.SetActive(false);
+            Debug.Log("Picked up and Disabled");
         }
     }
 }

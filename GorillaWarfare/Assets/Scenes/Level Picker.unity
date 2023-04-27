@@ -207,9 +207,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1239805079}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Quit
+      - m_Target: {fileID: 1239805082}
+        m_TargetAssemblyTypeName: JungleMenu1, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -983,9 +983,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1239805079}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Quit
+      - m_Target: {fileID: 1239805081}
+        m_TargetAssemblyTypeName: ZooMenu, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1179,6 +1179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1239805080}
   - component: {fileID: 1239805079}
+  - component: {fileID: 1239805082}
   - component: {fileID: 1239805081}
   m_Layer: 0
   m_Name: Main Menu
@@ -1224,7 +1225,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1239805078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0561e2e567b88c14aa4f3091e14d342d, type: 3}
+  m_Script: {fileID: 11500000, guid: 575385d76b3b0734ab55a543e3db8c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1239805082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239805078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9ae7a34f4a1774f9be3f2f25e50fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1255907779

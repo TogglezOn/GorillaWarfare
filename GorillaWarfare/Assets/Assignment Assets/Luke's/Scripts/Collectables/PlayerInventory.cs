@@ -11,7 +11,7 @@ public int NumberOfOrbs { get; private set; }
     public void OrbsCollected()
     {
         NumberOfOrbs++;
-        Debug.Log("eh");
+        Debug.Log("Added 1");
         OnOrbCollected.Invoke(this);
     }
 }
