@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 26ec07bdda752ec4d95ab66546ed09a2
   - enabled: 1
+    path: Assets/Scenes/Level Picker.unity
+    guid: bf774db6e24475448b7383b2dbc620e4
+  - enabled: 1
     path: Assets/Scenes/Zoo 2.0.unity
     guid: b9ffc5d3cedb1dc4984b4581fccc40e7
   - enabled: 1

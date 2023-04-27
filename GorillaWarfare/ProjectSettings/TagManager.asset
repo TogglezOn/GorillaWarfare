@@ -23,6 +23,8 @@ TagManager:
   - PW - Prop
   - PW - Building
   - Synty Tree
+  - Pickup
+  - PickUp
   layers:
   - Default
   - TransparentFX
