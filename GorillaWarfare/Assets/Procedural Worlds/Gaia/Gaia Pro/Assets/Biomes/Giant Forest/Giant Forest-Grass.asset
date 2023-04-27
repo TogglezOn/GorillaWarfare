@@ -9,12 +9,12 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PW_Detail_WildGrass_35378_26252_28226_37216_30502
   m_Shader: {fileID: 4800000, guid: 72462e7bb7591b4418a705a37fe544ac, type: 3}
-  m_ValidKeywords:
-  - _PW_SF_WIND_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
+  - _PW_SF_WIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -608,13 +608,13 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PW_Grass_Phleum_PratenseLOD0_35386_26260_28234_37224_30510
   m_Shader: {fileID: 4800000, guid: 72462e7bb7591b4418a705a37fe544ac, type: 3}
-  m_ValidKeywords:
-  - _PW_SF_WIND_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_DECALS
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
+  - _PW_SF_WIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -5193,12 +5193,12 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PW_Detail_WildGrass_35380_26254_28228_37218_30504
   m_Shader: {fileID: 4800000, guid: 72462e7bb7591b4418a705a37fe544ac, type: 3}
-  m_ValidKeywords:
-  - _PW_SF_WIND_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
+  - _PW_SF_WIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -5659,12 +5659,12 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PW_Detail_WildGrass_35382_26256_28230_37220_30506
   m_Shader: {fileID: 4800000, guid: 72462e7bb7591b4418a705a37fe544ac, type: 3}
-  m_ValidKeywords:
-  - _PW_SF_WIND_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
+  - _PW_SF_WIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -5974,13 +5974,13 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PW_Detail_WildGrass_Billboard_35384_26258_28232_37222_30508
   m_Shader: {fileID: 4800000, guid: 72462e7bb7591b4418a705a37fe544ac, type: 3}
-  m_ValidKeywords:
-  - _PW_SF_WIND_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_DECALS
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
+  - _PW_SF_WIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
@@ -6423,13 +6423,13 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PW_Grass_Phleum_PratenseLOD1_35388_26262_28236_37226_30512
   m_Shader: {fileID: 4800000, guid: 72462e7bb7591b4418a705a37fe544ac, type: 3}
-  m_ValidKeywords:
-  - _PW_SF_WIND_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_DECALS
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
+  - _PW_SF_WIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
