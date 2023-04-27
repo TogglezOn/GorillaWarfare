@@ -25,6 +25,8 @@ TagManager:
   - Synty Tree
   - Pickup
   - PickUp
+  - WhatIsGround
+  - WhatIsPlayer
   layers:
   - Default
   - TransparentFX
